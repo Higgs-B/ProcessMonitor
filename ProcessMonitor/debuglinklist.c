@@ -221,7 +221,7 @@ void testDL() {
 void testSL() {
 	printf("NonSorted linked list test\n");
 	printf(
-		"Add  Node: a\nDel  Node: d X\n"
+		"Add  Node: a\nDel  Node: d X\nAdd End Node: l\n"
 	);
 	snode* head = 0;
 	char action = 0;
@@ -243,6 +243,12 @@ void testSL() {
 			if (node)
 				free(node);
 
+			debugSlist(&head);
+			printf("-------------------------------------\n");
+			break;
+		case 'l':
+			node = dbgCreatednode();
+			addLastSlist(&head, node);
 			debugSlist(&head);
 			printf("-------------------------------------\n");
 			break;

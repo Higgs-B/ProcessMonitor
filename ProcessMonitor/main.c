@@ -3,7 +3,8 @@
 #include "linklist.h"
 #include "debuglinklist.h"
 
-int main()
+int main(int argc, char * argv[])
 {
-	initDebugging();
+		initDebugging();
+		return 0;
 }
