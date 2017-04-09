@@ -1,4 +1,4 @@
-#include "debuglinklist.h"
+#include "global.h"
 
 Iddnode* dbgCreateIddnode(unsigned ID)
 {
@@ -6,17 +6,20 @@ Iddnode* dbgCreateIddnode(unsigned ID)
 	n->ID = ID;
 	return n;
 }
+
 dnode* dbgCreatednode()
 {
 	dnode* n = calloc(sizeof(dnode), 1);
 	return n;
 }
+
 Idsnode* dbgCreateIdsnode(unsigned ID)
 {
 	Idsnode* n = calloc(sizeof(Idsnode), 1);
 	n->ID = ID;
 	return n;
 }
+
 snode* dbgCreateSnode()
 {
 	snode* n = calloc(sizeof(snode), 1);
@@ -32,6 +35,7 @@ void debugSortDList(Iddnode** head)
 		cpnt = cpnt->next;
 	}
 }
+
 void debugDList(dnode** head)
 {
 	dnode* cpnt = *head;
@@ -41,6 +45,7 @@ void debugDList(dnode** head)
 		cpnt = cpnt->next;
 	}
 }
+
 void debugSortSlist(Idsnode** head)
 {
 	Idsnode* cpnt = *head;
@@ -50,6 +55,7 @@ void debugSortSlist(Idsnode** head)
 		cpnt = cpnt->next;
 	}
 }
+
 void debugSlist(snode** head) {
 	snode* cpnt = *head;
 	while (cpnt)
@@ -89,6 +95,7 @@ void initDebugging()
 		} 
 	} while (option > 0);
 }
+
 void testSDL() {
 	printf("Sorted Doubled linked list tests\n");
 	printf(
@@ -137,6 +144,7 @@ void testSDL() {
 	} while (res>0);
 	printf("leaving test\n");
 }
+
 void testSSL() {
 	printf("Sorted Single linked list test\n");
 	printf(
@@ -184,6 +192,7 @@ void testSSL() {
 		}
 	} while (res>0);
 }
+
 void testDL() {
 	printf("NonSorted double linked list test\n");
 	printf(
@@ -218,6 +227,7 @@ void testDL() {
 	} while (res > 0);
 	return;
 }
+
 void testSL() {
 	printf("NonSorted linked list test\n");
 	printf(
@@ -232,14 +242,14 @@ void testSL() {
 		res = scanf_s("%c", &action, 1);
 		switch (action) {
 		case 'a':
-			node = dbgCreatednode();
+			node = dbgCreateSnode();
 			addFirstSlist(&head, node);
 			debugSlist(&head);
 			printf("-----------------------------------\n");
 			break;
 		case 'd':
 			scanf_s("%p", &p);
-			node = removeSlist(&head, (dnode*)p);
+			node = removeSlist(&head, (snode*)p);
 			if (node)
 				free(node);
 
@@ -247,7 +257,7 @@ void testSL() {
 			printf("-------------------------------------\n");
 			break;
 		case 'l':
-			node = dbgCreatednode();
+			node = dbgCreateSnode();
 			addLastSlist(&head, node);
 			debugSlist(&head);
 			printf("-------------------------------------\n");
@@ -257,6 +267,5 @@ void testSL() {
 			break;
 		}
 	} while (res > 0);
-	return;
 	return;
 }

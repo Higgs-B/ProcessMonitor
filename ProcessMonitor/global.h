@@ -1,6 +1,9 @@
+#include <Windows.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "linklist.h"
+#include "debuglinklist.h"
 
 //should we hash this for speed?
 typedef struct extFileType_t {
@@ -23,7 +26,7 @@ typedef struct Childproc_t {
 
 typedef struct Procmon_t {
 	struct Procmon_t* next;
-	struct Procmon_t* prev;
+	//struct Procmon_t* prev;
 	unsigned int PID;
 	struct Procmon_t* parent;
 	struct Childproc_t* child;
@@ -34,7 +37,9 @@ typedef struct Procmon_t {
 	unsigned int trustpoints;
 	unsigned int delFiles;
 	unsigned int touchFiles;
+	//How many different extensions are read
 	unsigned int indiffExt;
+	//How many different extensions are written
 	unsigned int outdiffExt;
 	unsigned int highEntropyFiles;
 	unsigned int lowSimilarityScore;
@@ -53,3 +58,12 @@ typedef struct Kernel_Update_t {
 	unsigned int add_highEntropyFiles;
 	unsigned int add_lowSimilarityScore;
 } Kernel_Update;
+
+DWORD WINAPI receiveKernelMessage(void);
+DWORD WINAPI updateProcList(void);
+void setKernelUpdateParams(Kernel_Update * node);
+void addLastKernelList(Kernel_Update ** head, Kernel_Update* node);
+Procmon* findSortProclist(Procmon** head, unsigned int ID);
+void addSortProclist(Procmon** head, Procmon * node);
+void initializeProcNode(Procmon *proc_node, unsigned int PID);
+void updateProclist(Kernel_Update * update_node, Procmon * proc_node);

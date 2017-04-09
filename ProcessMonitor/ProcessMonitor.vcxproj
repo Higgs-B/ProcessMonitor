@@ -116,8 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debuglinklist.c" />
+    <ClCompile Include="global.cpp" />
     <ClCompile Include="linkman.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="threadhandlers.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

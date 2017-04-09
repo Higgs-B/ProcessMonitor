@@ -1,4 +1,4 @@
-#include "linklist.h"
+#include "global.h"
 
 //sorted double linked list
 //needs to be tested.
@@ -129,7 +129,7 @@ void addFirstDlist(dnode** head, dnode* node)
 	(*head)->next = cpnt;
 
 	// if cpnt is not null the prev of cpnt needs to be over written as 
-	// the head needs to have the prev of cpn just incase the head prev is nut null.
+	// the head needs to have the prev of cpn just in case the head prev is nut null.
 	if (cpnt)
 	{
 		(*head)->prev = cpnt->prev;
